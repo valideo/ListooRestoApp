@@ -1,0 +1,10 @@
+page-start-config {
+    
+    .fixed-content{
+        background-color : map-get($colors, listooPink);
+    }
+
+    ion-content{
+        color : white !important;
+    }
+}

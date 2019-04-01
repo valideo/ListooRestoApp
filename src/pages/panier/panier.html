@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>panier</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1>Etat du panier du jour !</h1>
+
+    <ion-card>
+      <div class="imgWrap">
+        <img src="../../assets/imgs/defaultPic.jpg"/>
+      </div>
+      <div class="picText">
+        <h1>Votre panier</h1>
+        <p>{{dateFormated}}</p>
+        <button ion-button class="buttonInvert" >Changer la photo du panier</button>
+      </div>
+      <ion-item *ngIf="isPublished">
+      <div class="contain border" start>
+        <div><ion-icon name="basket"></ion-icon></div>
+        <p>1 Paniers réservés</p>
+      </div>
+      <div class="contain" end>
+        <div><ion-icon name="basket"></ion-icon></div>
+        <p>4 Paniers restants</p>
+      </div>
+      </ion-item>
+      <ion-item *ngIf="isPublished"><button ion-button (click)="disableAnnonce()">Dépublier</button></ion-item>
+      <ion-item *ngIf="!isPublished">
+        <p>Votre panier n'est pas encore publié !</p>
+        <button ion-button (click)="activeAnnonce()">Publier</button>
+      </ion-item>
+      </ion-card>
+      <button ion-button full (click)="goDetail()">Voir le détail du panier</button>
+
+</ion-content>
