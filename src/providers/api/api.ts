@@ -39,6 +39,7 @@ export class ApiProvider {
     return new Promise((resolve) => {
       this.http.post(this.apiBaseUrl+"users/loginResto/", postData, options).subscribe(data => {
         this.token = data['token'];
+        console.log(this.token);
         resolve(data);
       }, err => {
         if(err.status == 400){
@@ -131,7 +132,7 @@ export class ApiProvider {
       'Authorization': 'Bearer '+this.token,
     });
     let options = {headers: headers}
-    let postData = {"desc": desc, "piUrl": piUrl, "price" : price, "startHour" : startHour, "endHour": endHour, "qtite" : qtite, "isActive" : isActive}
+    let postData = {"desc": desc, "piUrl": "defaultPic.jpg", "price" : price, "startHour" : startHour, "endHour": endHour, "qtite" : qtite, "isActive" : isActive}
     return new Promise((resolve, reject) => {
       this.http.post(this.apiBaseUrl+"annonce/create/", postData, options).subscribe(data => {
         resolve(data);
@@ -175,6 +176,24 @@ export class ApiProvider {
       });
     });
   }
+
+  apiUpdateImg(url : string) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+this.token,
+    });
+    let options = {headers: headers}
+    let postData = {"imgUrl" : url}
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiBaseUrl+"annonce/updateImg/", postData, options).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+        reject(err);
+      });
+    });
+  }
+
 
 
 

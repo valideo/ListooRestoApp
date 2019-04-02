@@ -19,6 +19,7 @@ import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider, 
     NativeStorage,
-    ImagePicker
+    ImagePicker,
+    FileTransfer
   ]
 })
 export class AppModule {}
