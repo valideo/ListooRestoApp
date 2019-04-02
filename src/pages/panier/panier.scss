@@ -17,6 +17,12 @@ page-panier {
         }   
         .imgWrap {
             position:relative;
+
+            img{
+                height: 200px;
+                object-fit: cover;
+            }
+
           }
           
           .imgWrap:before {

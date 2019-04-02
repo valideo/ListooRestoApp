@@ -18,9 +18,9 @@
       <div class="picText">
         <h1>Votre panier</h1>
         <p>{{dateFormated}}</p>
-        <button ion-button class="buttonInvert" >Changer la photo du panier</button>
+        <button ion-button class="buttonInvert" (click)="changePicture()" >Changer la photo du panier</button>
       </div>
-      <ion-item *ngIf="isPublished">
+      <ion-item *ngIf="isPublished" style="padding-bottom: 0px !important">
       <div class="contain border" start>
         <div><ion-icon name="basket"></ion-icon></div>
         <p>1 Paniers réservés</p>
@@ -30,7 +30,7 @@
         <p>4 Paniers restants</p>
       </div>
       </ion-item>
-      <ion-item *ngIf="isPublished"><button ion-button (click)="disableAnnonce()">Dépublier</button></ion-item>
+      <ion-item style="padding-top : 0px !important; padding-bottom: 0px !important" *ngIf="isPublished"><button ion-button (click)="disableAnnonce()">Dépublier</button></ion-item>
       <ion-item *ngIf="!isPublished">
         <p>Votre panier n'est pas encore publié !</p>
         <button ion-button (click)="activeAnnonce()">Publier</button>
