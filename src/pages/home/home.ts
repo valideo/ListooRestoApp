@@ -1,7 +1,7 @@
 import { ApiProvider } from './../../providers/api/api';
 import { TabsPage } from './../tabs/tabs';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { LoginPage } from './../login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -12,7 +12,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider) {
+  constructor(public navCtrl: NavController, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider) {
     
   }
 

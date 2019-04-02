@@ -5,7 +5,7 @@ import { ToastController, DateTime } from 'ionic-angular';
 @Injectable()
 export class ApiProvider {
 
-  apiBaseUrl = "http://127.0.0.1:8080/api/";
+  apiBaseUrl = "http://192.168.1.3:8080/api/";
   token : string = "";
   isBlured : string = "blured";
 
