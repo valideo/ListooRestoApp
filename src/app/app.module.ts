@@ -1,3 +1,4 @@
+import { HeaderSmallComponent } from './../components/header-small/header-small';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -32,12 +33,13 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     RegisterPage,
     LoginPage,
     ConfigPanierPage,
-    StartConfigPage
+    StartConfigPage,
+    HeaderSmallComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
