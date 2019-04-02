@@ -18,7 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { PhotoLibrary } from '@ionic-native/photo-library';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider, 
     NativeStorage,
-    PhotoLibrary
+    ImagePicker
   ]
 })
 export class AppModule {}
