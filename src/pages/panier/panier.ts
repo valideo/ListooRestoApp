@@ -1,4 +1,3 @@
-import { HeaderSmallComponent } from './../../components/header-small/header-small';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ConfigPanierPage } from './../config-panier/config-panier';
 import { StartConfigPage } from './../start-config/start-config';
@@ -38,6 +37,8 @@ export class PanierPage {
         var picName = data["piUrl"].substring(1, data["piUrl"].length-1);
         this.imgUrl = "http:///192.168.1.3:8080/uploads/"+ picName;
       }
+      
+      //this.showStartConfig();
         
     },err =>{
       if(err["status"] == 404){

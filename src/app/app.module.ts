@@ -1,3 +1,4 @@
+import { HeaderBigComponent } from './../components/header-big/header-big';
 import { HeaderSmallComponent } from './../components/header-small/header-small';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +23,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer } from '@ionic-native/file-transfer';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +36,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     LoginPage,
     ConfigPanierPage,
     StartConfigPage,
-    HeaderSmallComponent
+    HeaderSmallComponent,
+    HeaderBigComponent
   ],
   imports: [
     BrowserModule,

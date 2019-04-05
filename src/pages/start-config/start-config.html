@@ -1,8 +1,8 @@
 <ion-content padding>
 
-  <h1>Première connexion</h1>
-  <h3>Configurez votre panier Listoo !</h3>
+  <h3><ion-icon (click)="dismiss('exit')" name="close"></ion-icon> Configurez votre</h3>
+
+  <img src="../../assets/imgs/listooBag.png"/>
 
   <button class="buttonInvert" ion-button full (click)="dismiss('config')">Démarrer la configuration</button>
-  <a (click)="dismiss('exit')">Plus tard</a>
 </ion-content>

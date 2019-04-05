@@ -3,6 +3,10 @@ page-panier {
 
     ion-card{
         border-radius: 10px !important;
+        -webkit-box-shadow: 0px 6px 20px -5px rgba(0,0,0,0.2) !important;
+        -moz-box-shadow: 0px 6px 20px -5px rgba(0,0,0,0.2) !important;
+        box-shadow: 0px 6px 20px -5px rgba(0,0,0,0.2) !important;
+        margin-bottom : 3vh !important;
         .picText{
         text-align: center;
         margin-top: -150px;

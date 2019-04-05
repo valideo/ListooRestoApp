@@ -1,24 +1,20 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Connexion</ion-title>
-  </ion-navbar>
-
+  <header-big></header-big>
 </ion-header>
 
 
 <ion-content padding>
 
+    <p>Lorem ipsum dolor sit amet consectetur !</p>
+
     <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email"></ion-input>
+        <ion-input [(ngModel)]="email" type="email" placeholder="Adresse email"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label floating>Mot de passe</ion-label>
-        <ion-input [(ngModel)]="password" type="password"></ion-input>
+        <ion-input [(ngModel)]="password" type="password" placeholder="Mot de passe"></ion-input>
     </ion-item>
 
     <button ion-button full (click)="clickLogin()">Se connecter</button>
-    <button ion-button full (click)="forgotPassClick()">Mot de passe oublié ?</button>
+    <a (click)="forgotPassClick()">Mot de passe oublié ?</a>
 
 </ion-content>

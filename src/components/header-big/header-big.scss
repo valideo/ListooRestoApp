@@ -1,0 +1,21 @@
+header-big {
+    text-align: center;
+    .headerContainer{
+        padding-top : 10vh;
+        display: inline-block;
+        position: relative;
+
+        img{
+            width: 50%;
+        }
+
+        ion-icon{
+            position: absolute;
+            left: 5%;
+            top: 14vh;
+            font-size: 25px;
+            color : map-get($colors, listooPink);
+        }
+
+    }
+}

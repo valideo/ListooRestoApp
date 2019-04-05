@@ -109,6 +109,10 @@ export class ConfigPanierPage {
     this.viewCtrl.dismiss();
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   dateEndChanged(){
     console.log(this.endHour);
   }

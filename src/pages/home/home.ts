@@ -1,3 +1,4 @@
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from './../../providers/api/api';
 import { TabsPage } from './../tabs/tabs';
 import { Component } from '@angular/core';
@@ -12,7 +13,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider) {
+  constructor(public navCtrl: NavController, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider, public splash : SplashScreen) {
     
   }
 
@@ -28,6 +29,9 @@ export class HomePage {
             if(data['token'] != ""){
               this.apiProvider.token = data['token'];
               this.navCtrl.setRoot(TabsPage);
+              this.splash.hide();
+            }else{
+              this.splash.hide();
             }
           });
         },
@@ -36,6 +40,7 @@ export class HomePage {
             if(this.apiProvider.token != ""){
                 
             }
+            this.splash.hide();
         }
       );
     });

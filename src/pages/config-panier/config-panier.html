@@ -1,9 +1,14 @@
 <ion-header >
-  <ion-navbar>
-    <ion-buttons start *ngIf="type != 'detail'">
-      <button ion-button (click)="dismiss()">Annuler</button>
-    </ion-buttons>
+  <ion-navbar *ngIf="type != 'detail'">
+    <ion-buttons start>
+      <button ion-button ion-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>   
+  <header-big></header-big>
   </ion-navbar>
+  <ion-icon (click)="goBack()" *ngIf="type == 'detail'" name="arrow-round-back"></ion-icon>
+  <header-small *ngIf="type == 'detail'"></header-small>
 </ion-header>
 
 <ion-content *ngIf="type != 'detail'">
@@ -56,7 +61,7 @@
 
   </ion-content>
 
-  <ion-content *ngIf="type == 'detail'">
+  <ion-content *ngIf="type == 'detail'" padding>
             
     <ion-item>
       <ion-label position="floating">Description</ion-label>
