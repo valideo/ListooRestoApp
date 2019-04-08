@@ -1,3 +1,4 @@
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from './../../providers/api/api';
 import { ProfilPage } from './../profil/profil';
 import { CommandesPage } from './../commandes/commandes';
@@ -15,10 +16,15 @@ export class TabsPage {
   tab3Root = ProfilPage;
   isBlured : string = "no";
 
-  constructor(public apiProvider : ApiProvider, public events : Events) {
+  constructor(public apiProvider : ApiProvider, public events : Events, public splash : SplashScreen) {
     events.subscribe('blurChange', () => {
       this.isBlured = this.apiProvider.isBlured;
     });
+    
+  }
+
+  ionViewDidLoad(){
+    this.splash.hide();
   }
 
 }
