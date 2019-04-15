@@ -1,6 +1,15 @@
 page-login {
 text-align: center;
 
+ion-content{
+    background-image: url("../assets/imgs/ListooBagBG.png");
+    background-position: bottom; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: contain; /* Resize the background image to cover the entire container */
+    background-color : #f5f5f5 !important;
+}
+
+
 ion-item{
     margin-top : 5vh !important;
     margin-bottom : 5vh !important;

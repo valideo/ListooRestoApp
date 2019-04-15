@@ -14,6 +14,7 @@ import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
 import { ConfigPanierPage } from './../pages/config-panier/config-panier';
 import { StartConfigPage } from './../pages/start-config/start-config';
+import { PwforgotPage } from '../pages/pwforgot/pwforgot';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { FCM } from '@ionic-native/fcm';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     ConfigPanierPage,
     StartConfigPage,
     HeaderSmallComponent,
-    HeaderBigComponent
+    HeaderBigComponent,
+    PwforgotPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     RegisterPage,
     LoginPage,
     ConfigPanierPage,
-    StartConfigPage
+    StartConfigPage,
+    PwforgotPage
   ],
   providers: [
     StatusBar,
@@ -64,7 +69,9 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     ApiProvider, 
     NativeStorage,
     ImagePicker,
-    FileTransfer
+    FileTransfer,
+    FCM,
+    LocalNotifications
   ]
 })
 export class AppModule {}

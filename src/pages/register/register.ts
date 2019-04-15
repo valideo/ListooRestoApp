@@ -34,7 +34,6 @@ export class RegisterPage {
 
   register(){
     this.apiProvider.apiRegister(this.email, this.password, this.sName, this.fName, this.address, this.city, this.zip, this.tel, this.restoName, this.restoType).then(data =>{
-      this.apiProvider.presentToast("Votre compte a bien été créé");
       this.navCtrl.pop();
     }, err =>{
 

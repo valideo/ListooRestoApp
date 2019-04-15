@@ -3,7 +3,7 @@ import { ConfigPanierPage } from './../config-panier/config-panier';
 import { StartConfigPage } from './../start-config/start-config';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events, DateTime } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
@@ -17,7 +17,10 @@ export class PanierPage {
   todayDate : Date = new Date(Date.parse(Date()));
   dateFormated : string = "";
   isPublished : boolean = false;
-  imgUrl : string = "http:///192.168.1.3:8080/uploads/defaultPic.jpg";
+  imgUrl : string = "http://5.51.150.55:8080/uploads/defaultPic.jpg";
+  nbReserved : number = 0;
+  nbRestants : number = 0;
+  hasAnnonce : boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public modalCtrl : ModalController, public events : Events, public imagePicker : ImagePicker, private transfer: FileTransfer) {
     var currentMonth = (this.todayDate.getMonth() + 1);
@@ -30,19 +33,37 @@ export class PanierPage {
   }
 
   init(){
+
     this.apiProvider.apiGetAnnonce().then(data =>{
+      this.hasAnnonce = true;
       if(data["isActive"] == true)
         this.isPublished = true; 
       if(data["piUrl"] != ""){
         var picName = data["piUrl"].substring(1, data["piUrl"].length-1);
-        this.imgUrl = "http:///192.168.1.3:8080/uploads/"+ picName;
+        this.imgUrl = "http://5.51.150.55:8080/uploads/"+ picName;
       }
-      
-      //this.showStartConfig();
+      if(this.checkDate(data["startHour"]) == false){
+        console.log("panier à mettre à jour");
+        this.showStartConfig("edit");
+      }else{
+        console.log("panier à jour");
+      }
+
+    this.apiProvider.apiGetCommandes().then(dataC=>{
+      this.nbReserved = 0;
+      var orders : any = dataC;
+      orders.forEach(element => {
+        this.nbReserved += element["qtite"]
+      });
+      this.nbRestants = data["qtite"] - this.nbReserved;
+    }, err =>{
+
+    });
         
     },err =>{
       if(err["status"] == 404){
-        this.showStartConfig();
+        this.showStartConfig("first");
+        this.hasAnnonce = false;
       }
     })
   }
@@ -63,11 +84,11 @@ export class PanierPage {
     })
   }
 
-  showStartConfig(){
-    let startConfigModal = this.modalCtrl.create(StartConfigPage,{type : "first"},{
+  showStartConfig(typeModal : string){
+    let startConfigModal = this.modalCtrl.create(StartConfigPage,{type : typeModal},{
       cssClass : 'modal-config'
     });
-    let configPanierModal = this.modalCtrl.create(ConfigPanierPage,{type : "first"},{
+    let configPanierModal = this.modalCtrl.create(ConfigPanierPage,{type : typeModal},{
 
     });
     startConfigModal.onDidDismiss(data => {
@@ -78,6 +99,10 @@ export class PanierPage {
       this.events.publish('blurChange');
      }
     });
+
+    configPanierModal.onDidDismiss(data => {
+      this.navCtrl.setRoot(TabsPage);
+     });
     this.apiProvider.isBlured = "fadeInBlur";
     this.events.publish('blurChange');
     startConfigModal.present();
@@ -96,7 +121,7 @@ export class PanierPage {
         mimeType: 'multipart/form-data',
         params : {file : results[i]}
      }
-     fileTransfer.upload(results[i], 'http:///192.168.1.3:8080/apiImg/upload', options)
+     fileTransfer.upload(results[i], 'http://5.51.150.55:8080/apiImg/upload', options)
       .then((data) => {
         this.apiProvider.apiUpdateImg(data["response"]).then(data=>{
           this.navCtrl.setRoot(TabsPage);
@@ -110,6 +135,26 @@ export class PanierPage {
     }
     }, (err) => { });
 
+  }
+
+  checkDate(datePanierString : string){
+    var datePanier = new Date(datePanierString);
+    console.log("Panier : " + datePanier.toLocaleString());
+    var todayDate : Date = new Date();
+    todayDate.setHours(5);
+    todayDate.setMinutes(0);
+    console.log("Date de comparaison : " + todayDate.toLocaleString());
+    if(datePanier.toLocaleString() > todayDate.toLocaleString())
+      return true;
+    else{
+      var dateEcart = new Date();
+      console.log("Date ecart : " + dateEcart.toLocaleString());
+
+      if(todayDate.toLocaleString() > dateEcart.toLocaleString())
+        return true;
+      else
+        return false;
+    }
   }
 
   ionViewDidEnter(){

@@ -1,7 +1,7 @@
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, Events, DateTime, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, Events, ModalController, ViewController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,12 +15,15 @@ export class ConfigPanierPage {
   qtite : number = 1;
   totalGain : number = this.prix*0.3*this.qtite;
   desc : string = "";
-  startHour : DateTime;
+  startHour : String = "09:00:00";
   isDisabled : boolean = true;
-  endHour : DateTime;
+  endHour : String = "23:00:00";
   piUrl : string = "";
-  minEnd : string = "2119-03-28T23:59Z";
-  todayDate : Date = new Date(Date.parse(Date()));
+  todayDate : Date = new Date();
+  minEnd : string;
+  minStart : string;
+  endHourDate : Date = new Date();
+  startHourDate : Date = new Date();
   type : string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController) {
@@ -30,6 +33,9 @@ export class ConfigPanierPage {
     this.type = this.navParams.get("type");
     if(this.type != "first")
       this.loadData();
+    this.startHourDate.setHours(9);
+    this.endHourDate.setHours(23);
+    this.minStart = this.todayDate.toLocaleTimeString();
   }
 
   slideTo(nb : number){
@@ -40,8 +46,14 @@ export class ConfigPanierPage {
       this.prix = data["price"];
       this.qtite = data["qtite"];
       this.desc = data["desc"];
-      this.startHour = data["startHour"];
-      this.endHour = data["endHour"];
+      var startHourDateGet = new Date(data["startHour"]);
+      this.startHour = startHourDateGet.toLocaleTimeString();
+      this.startHourDate.setHours(parseInt(this.startHour.toString().substring(0,2))); 
+      this.startHourDate.setMinutes(parseInt(this.startHour.toString().substring(3,5)));
+      var endHourDateGet = new Date(data["endHour"]);
+      this.endHour = endHourDateGet.toLocaleTimeString();
+      this.endHourDate.setHours(parseInt(this.endHour.toString().substring(0,2))); 
+      this.endHourDate.setMinutes(parseInt(this.endHour.toString().substring(3,5)));
       this.valueChanged();
     }, err => {
 
@@ -69,44 +81,21 @@ export class ConfigPanierPage {
   }
 
   dateStartChanged(){
-    
-    var minEndHour = this.addAnHour(this.startHour.toString());
-    var currentMonth = (this.todayDate.getMonth() + 1);
-    var currentMonthString;
-    if(currentMonth < 10)
-      currentMonthString = "0"+currentMonth;
-    else
-      currentMonthString = currentMonth;
-
-    var currentDay = this.todayDate.getUTCDate();
-    var currantDayString
-    if(currentDay < 10)
-      currantDayString = "0"+currentDay;
-    else
-      currantDayString = currentDay;
-
-    var currentDate = this.todayDate.getFullYear() + "-" + currentMonthString + "-" + currantDayString;
-    this.minEnd = currentDate+"T"+minEndHour+":00Z";
-    console.log(this.minEnd);
+    var hourSelected : number = parseInt(this.startHour.toString().substring(0,2));
+    var minEndDate = this.todayDate;
+    minEndDate.setHours(hourSelected +1);
+    this.minEnd = minEndDate.toLocaleTimeString();
+    var minutesSelected : number = parseInt(this.startHour.toString().substring(3,5));
+    this.startHourDate.setHours(hourSelected);
+    this.startHourDate.setMinutes(minutesSelected);
     this.isDisabled = false;
   }
-
-  addAnHour(hourToConvert : string){
-    var hours = parseInt(hourToConvert.substring(0,2));
-    hours += 1;
-    var stringHours;
-    if(hours < 10){
-      stringHours = "0"+hours;
-    }else if(hours == 23){
-      stringHours == "23";
-    }else{
-      stringHours = hours;
-    }
-    return stringHours;
-  }
+  
 
   dismiss(){
     this.viewCtrl.dismiss();
+    this.apiProvider.isBlured = "fadeOutBlur";
+    this.events.publish('blurChange');
   }
 
   goBack(){
@@ -114,18 +103,23 @@ export class ConfigPanierPage {
   }
 
   dateEndChanged(){
-    console.log(this.endHour);
+    var hourSelected : number = parseInt(this.endHour.toString().substring(0,2));
+    var minutesSelected : number = parseInt(this.endHour.toString().substring(3,5));
+    this.endHourDate.setHours(hourSelected);
+    this.endHourDate.setMinutes(minutesSelected);
   }
 
   publishAnnonce(){
     if(this.type == "first"){
-      this.apiProvider.apiCreateAnnonce(this.desc, this.piUrl, this.prix, this.startHour, this.endHour, this.qtite, false).then(data =>{
+      this.apiProvider.apiCreateAnnonce(this.desc, this.piUrl, this.prix, this.startHourDate, this.endHourDate, this.qtite, false).then(data =>{
         this.dismiss();
       }, err =>{
         
       });
     }else if(this.type == "edit"){
-      this.apiProvider.apiUpdateAnnonce(this.desc, this.prix, this.startHour, this.endHour, this.qtite).then(data =>{
+      console.log(this.startHourDate);
+      console.log(this.endHourDate);
+      this.apiProvider.apiUpdateAnnonce(this.desc, this.prix, this.startHourDate, this.endHourDate, this.qtite).then(data =>{
         this.navCtrl.setRoot(TabsPage);
       }, err =>{
         
@@ -133,6 +127,5 @@ export class ConfigPanierPage {
     }
     
   }
-
 
 }

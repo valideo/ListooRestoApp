@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class StartConfigPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {
+    
   }
 
   dismiss(data : string){

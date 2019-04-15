@@ -30,10 +30,12 @@
             <ion-option  value="40000">40 000</ion-option>
           </ion-select>
         </ion-item>
-        <p>Gain total de</p>
-        <p>{{totalGain}} COP</p>
-        <p>Pour</p>
-        <p>{{qtite}} paquets</p>
+        <div id="resQtite">
+          <p>Gain total de</p>
+          <p class="whiteQtite">{{totalGain}} COP</p>
+          <p>Pour</p>
+          <p class="whiteQtite">{{qtite}} paquets</p>
+        </div>
       <button ion-button (click)="slideTo('1')">Suivant</button>
     </ion-slide>
     <ion-slide>
@@ -44,7 +46,7 @@
         <p>Plage horaire de récupération</p>
         <ion-item>
           <ion-label>De</ion-label>
-          <ion-datetime (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="HH:mm" [(ngModel)]="startHour"></ion-datetime>
+          <ion-datetime (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="HH:mm" min="{{minStart}}" [(ngModel)]="startHour"></ion-datetime>
         </ion-item>
         <ion-item>
           <ion-label>A</ion-label>

@@ -1,3 +1,4 @@
+import { PwforgotPage } from './../pwforgot/pwforgot';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { TabsPage } from './../tabs/tabs';
 import { ApiProvider } from './../../providers/api/api';
@@ -12,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  email : string = "v.l@bbleue.fr";
+  email : string = "wan.da@hotmail.fr";
   password : string = "test1234";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage) {
@@ -42,8 +43,7 @@ export class LoginPage {
   }
 
   forgotPassClick(){
-
-
+    this.navCtrl.push(PwforgotPage);
   }
 
 }

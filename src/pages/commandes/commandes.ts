@@ -1,12 +1,6 @@
+import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CommandesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +9,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CommandesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  orders : any = [];
+  ordersDetail : any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiProvider : ApiProvider) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandesPage');
+  init(){
+    this.apiProvider.apiGetCommandes().then(data =>{
+      this.ordersDetail = [];
+      this.orders = data;
+      this.orders.forEach(element => {
+        this.apiProvider.apiLoadUser(parseInt(element["idUser"])).then(dataUser =>{
+          var order = {isRecup : element["isRecup"], qtite : element["qtite"], fName : dataUser["fName"], sName : dataUser["sName"], date : element["orderDateTime"]};
+          this.ordersDetail.push(order);
+        }, err =>{
+
+        });
+      });
+      console.log(this.ordersDetail);
+    }, err =>{
+
+    });
+  }
+
+  ionViewWillEnter(){
+   this.init();
   }
 
 }

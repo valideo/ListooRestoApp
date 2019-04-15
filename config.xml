@@ -20,7 +20,9 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10" />
     <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="loadUrlTimeoutValue" value="60000" />
     <platform name="android">
+        <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="ShowSplashScreenSpinner" value="true" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -43,6 +45,7 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
+        <resource-file src="GoogleService-Info.plist" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -89,8 +92,10 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To access your pictures" />
     </plugin>
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="2.4.0" />
+    <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
     <engine name="windows" spec="6.0.1" />
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="7.1.4" />
     <engine name="browser" spec="5.0.4" />
+    <engine name="android" spec="7.1.4" />
 </widget>

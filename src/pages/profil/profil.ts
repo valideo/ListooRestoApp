@@ -1,6 +1,8 @@
+import { HomePage } from '../../pages/home/home';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 
 @IonicPage()
@@ -20,13 +22,14 @@ export class ProfilPage {
   restoName : string = "";
   restoType : string = "";
   isDisabled : boolean = true;
+  btnText : string = "Modifier les informations"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider) {
+  constructor(public app : App, public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage) {
     this.loadInfos();
   }
 
   loadInfos(){
-    this.apiProvider.apiLoadUser().then(data =>{
+    this.apiProvider.apiLoadProfile().then(data =>{
       this.email = data["email"];
       this.fName = data["fName"];
       this.sName = data["sName"];
@@ -39,6 +42,32 @@ export class ProfilPage {
     }, err =>{
 
     });
+  }
+
+  disconnect(){
+    this.nativeStorage.remove('listooUserCredentials').then(data=>{
+      this.apiProvider.token = "";
+      this.navCtrl.setRoot(HomePage);
+    }, err =>{
+      this.app.getRootNav().setRoot(HomePage);
+    });
+  }
+
+  editInfos(){
+    if(this.isDisabled == true){
+      this.isDisabled = false;
+      this.btnText = "Valider les informations";
+    }else{
+      this.apiProvider.apiUpdateMe(this.email, this.sName, this.fName, this.address, this.city, this.zip, this.tel, this.restoName, this.restoType).then(data=>{
+        this.isDisabled = true;
+        this.btnText = "Modifier les informations";
+        this.navCtrl.setRoot(ProfilPage);
+      }, err =>{
+        this.isDisabled = true;
+        this.btnText = "Modifier les informations";
+        this.apiProvider.presentToast("Impossible de mettre à jour les informations.")
+      });
+    }
   }
 
 }

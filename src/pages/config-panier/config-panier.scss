@@ -7,7 +7,7 @@ page-config-panier {
     }
 
     ion-item{
-        margin-top : 5vh !important;
+        margin-top : 0vh !important;
         margin-bottom : 5vh !important;
         border-radius: 5px !important;
         -webkit-box-shadow: 0px 6px 20px -5px rgba(0,0,0,0.2) !important;
@@ -44,6 +44,7 @@ page-config-panier {
         background-color: map-get($colors, listooPink );
         color: white;
         border-radius: 3rem;
+        margin-top : 3vh;
     }
 
     ion-header > ion-icon{
@@ -56,6 +57,36 @@ page-config-panier {
         border-radius: 3rem;
         left : 5% !important;
         top : 4vh !important;
+    }
+
+    .item-datetime{
+        width: 50% !important;
+        margin-left: 25% !important;
+        background-color: map-get($colors, listooPink );
+        color: white;
+
+        ion-label{
+            color : white;
+        }
+    }
+
+    #resQtite{
+        background-color: map-get($colors, listooPink );
+        color: white;
+        width: 90%;
+        margin-left: 5%;
+        padding: 1px 0px;
+        border-radius: 10px;
+        display: block;
+
+        .whiteQtite{
+            background-color : white;
+            color : map-get($colors, listooGreen);
+            width: 50%;
+            margin-left: 25%;
+            padding: 10px 0px;
+            border-radius: 10px;
+        }
     }
 
 }

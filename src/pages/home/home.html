@@ -2,7 +2,7 @@
   <header-big></header-big>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="!isLoggedIn" >
   <p>Lorem ipsum dolor sit amet consectetur !</p>
   <div class="divider"></div>
   <button ion-button full (click)="goToRegister()">S'inscrire</button>

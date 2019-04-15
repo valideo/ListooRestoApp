@@ -13,12 +13,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
 
+  isLoggedIn : boolean = true;
+
   constructor(public navCtrl: NavController, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider, public splash : SplashScreen) {
     
-  }
-
-  ionViewDidLoad(){
-   
     this.platform.ready().then(() => {
         
       this.nativeStorage.getItem('listooUserCredentials')
@@ -29,9 +27,13 @@ export class HomePage {
             if(data['token'] != ""){
               this.apiProvider.token = data['token'];
               this.navCtrl.setRoot(TabsPage);
+              this.isLoggedIn = true;
             }else{
+              this.isLoggedIn = false;
               this.splash.hide();
             }
+          }, err =>{
+            this.isLoggedIn = false;
           });
         },
         error => {
@@ -39,10 +41,15 @@ export class HomePage {
             if(this.apiProvider.token != ""){
                 
             }
-           // this.splash.hide();
+            this.isLoggedIn = false;
+            this.splash.hide();
         }
       );
     });
+  }
+
+  ionViewDidLoad(){
+   
   }
 
 
