@@ -1,3 +1,33 @@
+@import '../theme/fonts';
+
+p{
+  font-family: 'Galano Grotesque light';
+  font-size : 1.5rem;
+  line-height : 2.2rem;
+}
+span{
+  font-family: 'Galano Grotesque regular';
+  font-size : 1.5rem;
+}
+h1, h2{
+  font-family: 'Galano Grotesque bold';
+}
+h1{
+  font-size : 2.5rem;
+  line-height: 5rem;
+  padding-bottom : 5vh;
+}
+button, ion-label, h5, h3, h4{
+  font-family: 'Galano Grotesque medium';
+  font-size : 2rem;
+}
+h6{
+  font-family: 'Galano Grotesque medium';
+  font-style: italic;
+  font-size : 2rem;
+  line-height : 3rem;
+}
+
 @include media-breakpoint-down(sm) {
     .modal-config {
         .modal-wrapper {
@@ -8,6 +38,7 @@
           position: absolute;
           width: 80%;
           height: 45%;
+          border : solid 1px map-get($colors, listooPink);
         }
       }
     }
@@ -95,7 +126,7 @@
         min-height: 0px !important;
         margin-top : 15px;
         margin-bottom : 15px;
-        padding: 3px 0px;
+        padding: 6px 0px !important;
         border-radius: 20px !important;
         margin-left: 5px;
         margin-right: 5px;
@@ -113,6 +144,7 @@
           display: inline-block !important;
           vertical-align: middle;
           font-size : 22px !important;
+          padding-right: 10px !important;
         }
         span{
           display: inline-block !important;
@@ -154,3 +186,29 @@
   .header-md::after{
     background: none;
   }
+
+* ::-webkit-scrollbar {
+ display: none;
+}
+
+ion-tabs[tabsLayout=icon-top] .has-icon .tab-button-text{
+  margin : 0px !important;
+}
+ion-tabs .tab-button[aria-selected=true] .tab-button-text{
+  transition: none !important;
+  transform: none !important;
+}
+ion-tabs .tab-button[aria-selected=true] .tab-button-icon{
+  transform: none !important;
+}
+
+.select-icon{
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 2rem !important;
+  background-color: map-get($colors, listooPink) !important;
+
+  .select-icon-inner{
+    color : white !important
+  }
+}

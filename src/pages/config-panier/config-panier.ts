@@ -1,9 +1,9 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, Events, ModalController, ViewController} from 'ionic-angular';
+import { NavController, NavParams, Slides, Events, ModalController, ViewController} from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-config-panier',
   templateUrl: 'config-panier.html',
@@ -22,11 +22,13 @@ export class ConfigPanierPage {
   todayDate : Date = new Date();
   minEnd : string;
   minStart : string;
+  creneau : string;
   endHourDate : Date = new Date();
   startHourDate : Date = new Date();
   type : string = "";
+  isClavierOpen : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController, private keyboard : Keyboard) {
     events.subscribe('valuePanier', () => {
       this.totalGain = this.prix*0.3*this.qtite;
     });
@@ -36,6 +38,18 @@ export class ConfigPanierPage {
     this.startHourDate.setHours(9);
     this.endHourDate.setHours(23);
     this.minStart = this.todayDate.toLocaleTimeString();
+    keyboard.onKeyboardShow()
+    .subscribe(data => {
+       console.log('keyboard is shown');
+       this.isClavierOpen = true;
+    });
+    keyboard.onKeyboardHide()
+    .subscribe(data => {
+       console.log('keyboard is shown');
+       this.isClavierOpen = false;
+    });
+
+    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
   }
 
   slideTo(nb : number){
@@ -55,6 +69,7 @@ export class ConfigPanierPage {
       this.endHourDate.setHours(parseInt(this.endHour.toString().substring(0,2))); 
       this.endHourDate.setMinutes(parseInt(this.endHour.toString().substring(3,5)));
       this.valueChanged();
+      this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
     }, err => {
 
     });
@@ -89,6 +104,7 @@ export class ConfigPanierPage {
     this.startHourDate.setHours(hourSelected);
     this.startHourDate.setMinutes(minutesSelected);
     this.isDisabled = false;
+    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
   }
   
 
@@ -107,6 +123,7 @@ export class ConfigPanierPage {
     var minutesSelected : number = parseInt(this.endHour.toString().substring(3,5));
     this.endHourDate.setHours(hourSelected);
     this.endHourDate.setMinutes(minutesSelected);
+    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
   }
 
   publishAnnonce(){

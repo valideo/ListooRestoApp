@@ -6,7 +6,6 @@ import { NavController, Platform } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { LoginPage } from './../login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,7 +15,6 @@ export class HomePage {
   isLoggedIn : boolean = true;
 
   constructor(public navCtrl: NavController, public nativeStorage : NativeStorage, public platform : Platform, public apiProvider : ApiProvider, public splash : SplashScreen) {
-    
     this.platform.ready().then(() => {
         
       this.nativeStorage.getItem('listooUserCredentials')
@@ -34,6 +32,7 @@ export class HomePage {
             }
           }, err =>{
             this.isLoggedIn = false;
+            this.splash.hide();
           });
         },
         error => {
@@ -48,12 +47,6 @@ export class HomePage {
     });
   }
 
-  ionViewDidLoad(){
-   
-  }
-
-
-
   quitHome(){
     this.navCtrl.setRoot(TabsPage);
   }
@@ -66,6 +59,11 @@ export class HomePage {
     this.navCtrl.push(RegisterPage);
   }
 
-
+  ionViewDidEnter() {
+    let elem = <HTMLElement>document.querySelector(".tabbar");
+    if (elem != null) {
+      elem.style.display = 'none';
+    }
+  }
 
 }

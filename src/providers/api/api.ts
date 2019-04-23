@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastController, DateTime, Events } from 'ionic-angular';
+import { ToastController, Events } from 'ionic-angular';
 
 @Injectable()
 export class ApiProvider {

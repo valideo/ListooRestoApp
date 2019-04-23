@@ -3,11 +3,10 @@ import { ConfigPanierPage } from './../config-panier/config-panier';
 import { StartConfigPage } from './../start-config/start-config';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Events, DateTime } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
-@IonicPage()
 @Component({
   selector: 'page-panier',
   templateUrl: 'panier.html',
@@ -144,17 +143,27 @@ export class PanierPage {
     todayDate.setHours(5);
     todayDate.setMinutes(0);
     console.log("Date de comparaison : " + todayDate.toLocaleString());
-    if(datePanier.toLocaleString() > todayDate.toLocaleString())
+    if(datePanier.toLocaleString() > todayDate.toLocaleString()){
+      console.log("Date panier > Date Now");
       return true;
+    }
     else{
       var dateEcart = new Date();
       console.log("Date ecart : " + dateEcart.toLocaleString());
 
-      if(todayDate.toLocaleString() > dateEcart.toLocaleString())
+      if(todayDate.toLocaleString() > dateEcart.toLocaleString()){
+        console.log("Date panier < Date Now && Date Now < 5h");
         return true;
-      else
+      }
+      else{
+        console.log("Date panier < Date Now && Date Now > 5h");
         return false;
+      }
     }
+  }
+
+  goOrders(){
+    this.events.publish('goOrders');
   }
 
   ionViewDidEnter(){

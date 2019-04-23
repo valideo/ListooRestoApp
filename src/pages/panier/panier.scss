@@ -1,6 +1,12 @@
 page-panier {
     text-align: center;
 
+    #btnDetail{
+        width : 94% !important;
+        margin-left : 3% !important;
+        margin-top : 5vh !important;
+    }
+
     ion-card{
         border-radius: 10px !important;
         -webkit-box-shadow: 0px 6px 20px -5px rgba(0,0,0,0.2) !important;
@@ -9,21 +15,23 @@ page-panier {
         margin-bottom : 3vh !important;
         .picText{
         text-align: center;
-        margin-top: -150px;
+        margin-top: -200px;
         z-index:100;
         position: absolute;
         width: 85%;
+
+
         
-            p, h1{
+            h5, h1{
                 color: white;
-                padding-bottom: 10px;
+                padding-bottom: 30px;
             }
         }   
         .imgWrap {
             position:relative;
 
             img{
-                height: 200px;
+                height: 220px;
                 object-fit: cover;
             }
 
@@ -43,31 +51,51 @@ page-panier {
           ion-item{
               padding-top : 20px !important;
               padding-bottom : 20px !important;
+
+              ion-label{
+                  margin : 0px !important;
+              }
           }
 
           .contain{
+            padding-top: 10px;
             position: relative;
             width: 50%; /*Because you only have 3 elements (100 divided by 3)*/
             float: left; /*To get them next to each other if all else fails*/
-            color : map-get($colors, listooGreen);
+            color : map-get($colors, listooPink);
 
-            p{
+            h5{
                 font-size : 12px !important;
                 text-align: center;
-                color : map-get($colors, listooGreen);
+                color : map-get($colors, listooPink);
+            }
+
+            ion-icon{
+                -webkit-box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.15);
+                box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.15);
+                border-radius : 20px !important;
+                padding: 10px !important;
+                margin-bottom: 5px !important;
+                font-size : 18px;
             }
         }
 
         .border{
             border-right: solid 1px #bbbbbb;
-            color : map-get($colors, listooPink) !important;
-            p{
-                color : map-get($colors, listooPink) !important;
+            color : map-get($colors, listooGreen) !important;
+            h5{
+                color : map-get($colors, listooGreen) !important;
             }
         }
 
         div{
             text-align: center;
+        }
+
+        button{
+            margin-bottom: 3vh !important;
+            margin-top : 3vh !important;
         }
     } 
 }

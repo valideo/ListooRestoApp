@@ -2,10 +2,9 @@ import { HomePage } from '../../pages/home/home';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 
 
-@IonicPage()
 @Component({
   selector: 'page-profil',
   templateUrl: 'profil.html',

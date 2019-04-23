@@ -1,9 +1,7 @@
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',

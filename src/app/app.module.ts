@@ -1,5 +1,4 @@
-import { HeaderBigComponent } from './../components/header-big/header-big';
-import { HeaderSmallComponent } from './../components/header-small/header-small';
+import { ComponentsModule } from './../components/components.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -25,7 +24,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FCM } from '@ionic-native/fcm';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -39,14 +38,13 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     LoginPage,
     ConfigPanierPage,
     StartConfigPage,
-    HeaderSmallComponent,
-    HeaderBigComponent,
     PwforgotPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{ scrollAssist: false, autoFocusAssist: false }),
     HttpClientModule,
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +52,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     CommandesPage,
     PanierPage,
     ProfilPage,
-    TabsPage,
+    TabsPage, 
     HomePage,
     RegisterPage,
     LoginPage,
@@ -71,7 +69,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     ImagePicker,
     FileTransfer,
     FCM,
-    LocalNotifications
+    LocalNotifications,
+    Keyboard,
   ]
 })
 export class AppModule {}

@@ -3,18 +3,17 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { TabsPage } from './../tabs/tabs';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
 
-  email : string = "wan.da@hotmail.fr";
-  password : string = "test1234";
+  email : string = "";
+  password : string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage) {
   }

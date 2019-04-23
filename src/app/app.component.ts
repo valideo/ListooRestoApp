@@ -3,6 +3,7 @@ import { HomePage } from '../pages/home/home';
 import { Component } from '@angular/core';
 import { Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Keyboard } from '@ionic-native/keyboard';
 import { FCM } from '@ionic-native/fcm';
 
 @Component({
@@ -12,14 +13,16 @@ export class MyApp {
   rootPage:any = HomePage;
   userId : number = 0;
 
-  constructor(platform: Platform, statusBar: StatusBar, private fcm: FCM, private apiProvider : ApiProvider, private events : Events) {
+  constructor(platform: Platform, statusBar: StatusBar, private fcm: FCM, private apiProvider : ApiProvider, private evenemt : Events, private keyboard : Keyboard) {
     platform.ready().then(() => {
+
+      keyboard.disableScroll(true);
 
       if (!platform.is('mobileweb') && platform.is('ios') || !platform.is('mobileweb') && platform.is('android') ){
         this.fcm.getToken().then(token => {
           console.log(token);
         });
-        events.subscribe('tokenOk', () => {
+        evenemt.subscribe('tokenOk', () => {
           this.apiProvider.apiLoadProfile().then(data =>{
             console.log(data["id"]);
             this.fcm.subscribeToTopic('resto'+data["id"]);
@@ -41,7 +44,7 @@ export class MyApp {
           };
         });
       }
-      statusBar.styleDefault();
+      statusBar.backgroundColorByHexString('#ffffff');
     });
   }
 }
