@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastController, Events } from 'ionic-angular';
+import { ToastController, Events, AlertController } from 'ionic-angular';
 
 @Injectable()
 export class ApiProvider {
@@ -9,7 +9,7 @@ export class ApiProvider {
   token : string = "";
   isBlured : string = "blured";
 
-  constructor(public http: HttpClient,private toastCtrl: ToastController, private events : Events) {
+  constructor(public http: HttpClient,private toastCtrl: ToastController, private events : Events, private alertCtrl : AlertController) {
 
   }
 
@@ -28,6 +28,40 @@ export class ApiProvider {
     toast.present();
   }
 
+  presentAlertOK(message : string) {
+    const alert = this.alertCtrl.create({
+      message: message,
+      buttons: ['Ok']
+    });
+  
+    alert.present();
+  }
+
+  presentAlertConnexion(message : string) {
+    const alert = this.alertCtrl.create({
+      message: message,
+      buttons: ['Reintentar']
+    });
+  
+    alert.present();
+  }
+
+  presentAlertNotif(title : string, message : string) {
+    const alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+        text : 'Ver el pedido',
+        handler: () => {
+          this.events.publish('goOrders');
+        }
+      }
+    ]
+    });
+    alert.present();
+  }
+
 //Users 
 
   apiLogin(email : string, password: string) {
@@ -44,11 +78,11 @@ export class ApiProvider {
         resolve(data);
       }, err => {
         if(err.status == 400){
-          this.presentToast('Champs incorrects');
+          this.presentAlertConnexion('Algunos campos son incorrectos.');
       }else if(err.status == 403 || err.status == 404){
-           this.presentToast('Identifiant ou mot de passe incorrect');
+           this.presentAlertConnexion('Email o contrasena incorrecta');
       }else{
-           this.presentToast('Erreur serveur');
+        this.presentAlertConnexion('Ha acontecido un error en el servidor');
       }
       });
     });
@@ -65,29 +99,29 @@ export class ApiProvider {
         resolve(data);
       }, err => {
         if(err.status == 500){
-          this.presentToast('Impossible d\'envoyer l\'email de réinitialisation');
+          this.presentAlertConnexion('Es imposible enviar el mail de reinicializacion.');
       }
       });
     });
   }
 
-  apiRegister(email : string, password: string, sName : string, fName : string, address : string, city : string, zip : string, tel : string, restoName : string, restoType : string) {
+  apiRegister(email : string, password: string, sName : string, fName : string, address : string, city : string, tel : string, restoName : string, restoType : string) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     let options = {headers: headers}
-    let postData = {"email": email,"password": password, "sName": sName, "fName" : fName, "address" : address, "city": city, "zip" : zip, "tel" : tel, "restoName" : restoName, "restoType" : restoType }
+    let postData = {"email": email,"password": password, "sName": sName, "fName" : fName, "address" : address, "city": city, "zip" : "01000", "tel" : tel, "restoName" : restoName, "restoType" : restoType }
     return new Promise((resolve) => {
       this.http.post(this.apiBaseUrl+"users/registerResto/", postData, options).subscribe(data => {
         resolve(data);
-        this.presentToast("Votre compte a bien été créé");
+        this.presentAlertOK("Si cuenta ha sido creada.");
       }, err => {
         if(err.status == 400){
-          this.presentToast('Champs incorrects');
+          this.presentAlertConnexion('Algunos campos son incorrectos.');
       }else if(err.status == 403 || err.status == 404){
-           this.presentToast('Identifiant ou mot de passe incorrect');
+          this.presentAlertConnexion('Algunos campos son incorrectos.');
       }else{
-           this.presentToast('Erreur serveur');
+          this.presentAlertConnexion('Ha acontecido un error en el servidor');
       }
       });
     });
@@ -104,7 +138,7 @@ export class ApiProvider {
         resolve(data);
       }, err => {
         console.log(err);
-        this.presentToast('Impossible de charger les informations');
+        this.presentAlertOK("imposible de cargar la informacion, verifique su conexion.");
       });
     });
   }
@@ -120,7 +154,7 @@ export class ApiProvider {
         resolve(data);
       }, err => {
         console.log(err);
-        this.presentToast('Impossible de charger les informations');
+        this.presentAlertOK("imposible de cargar la informacion, verifique su conexion.");
       });
     });
   }
@@ -240,6 +274,23 @@ export class ApiProvider {
       this.http.get(this.apiBaseUrl+"commandes/resto", options).subscribe(data => {
         resolve(data);
       }, err => {
+        reject(err);
+      });
+    });
+  }
+
+  apiUpdateOrderState(orderId : number, state : boolean){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+this.token,
+    });
+    let options = {headers: headers}
+    let postData = {"isRecup" : state, "orderId" : orderId}
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiBaseUrl+"commande/state/", postData, options).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
         reject(err);
       });
     });

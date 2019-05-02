@@ -21,8 +21,6 @@
     <preference name="SplashScreenDelay" value="10" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="loadUrlTimeoutValue" value="60000" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="ShowSplashScreenSpinner" value="true" />

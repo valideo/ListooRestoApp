@@ -20,12 +20,12 @@ h1{
 button, ion-label, h5, h3, h4{
   font-family: 'Galano Grotesque medium';
   font-size : 2rem;
+  text-transform: initial !important;
 }
 h6{
-  font-family: 'Galano Grotesque medium';
-  font-style: italic;
-  font-size : 2rem;
-  line-height : 3rem;
+  font-family: 'Galano Grotesque regular';
+  font-size : 1.8rem;
+  line-height : 2.5rem;
 }
 
 @include media-breakpoint-down(sm) {
@@ -211,4 +211,38 @@ ion-tabs .tab-button[aria-selected=true] .tab-button-icon{
   .select-icon-inner{
     color : white !important
   }
+}
+
+.shadowed{
+  -moz-box-shadow: 0px 5px 7px 0px #d6d6d6 !important;
+  -webkit-box-shadow: 0px 5px 7px 0px #d6d6d6 !important;
+  -o-box-shadow: 0px 5px 7px 0px #d6d6d6 !important;
+  box-shadow: 0px 5px 7px 0px #d6d6d6 !important;
+}
+
+.alert-wrapper{
+  border-radius : 10px !important;
+
+  .alert-message{
+    border-bottom: solid 0.4px map-get($colors, listooPink) !important;
+  }
+
+  .alert-button-group{
+    text-align: center !important;
+    display: inline-block !important;
+    
+    button{
+      display: initial !important;
+
+      span{
+        color : map-get($colors, listooPink) !important;
+      }
+    }
+  }
+}
+
+.tab-badge{
+  right: 6% !important;
+  font-size: 1rem !important;
+  padding: 0px 4px !important;
 }

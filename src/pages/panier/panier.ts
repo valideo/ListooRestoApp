@@ -70,6 +70,7 @@ export class PanierPage {
   activeAnnonce(){
     this.apiProvider.apiChangeAnnonceState(true).then(data=>{
       this.isPublished = true;
+      this.events.publish('panierChanged');
     }, err =>{
 
     })
@@ -78,6 +79,7 @@ export class PanierPage {
   disableAnnonce(){
     this.apiProvider.apiChangeAnnonceState(false).then(data=>{
       this.isPublished = false;
+      this.events.publish('panierChanged');
     }, err =>{
       
     })

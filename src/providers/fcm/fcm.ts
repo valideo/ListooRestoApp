@@ -20,8 +20,8 @@ export class FcmProvider {
     let options = {headers: headers}
     let postData = {
       "notification":{
-        "title":"Panier récupéré !",
-        "body":"Votre panier a bien été enregistré comme récupéré. Merci pour votre commande !",
+        "title":"​¡Nuevo pedido!",
+        "body":"Se ha hecho un nuevo pedido, véalo aquí y prepare el paquete.",
         "sound":"default",
         "click_action":"FCM_PLUGIN_ACTIVITY",
         "icon":"fcm_push_icon"

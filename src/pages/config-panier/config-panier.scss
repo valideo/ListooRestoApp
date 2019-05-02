@@ -204,10 +204,6 @@ page-config-panier {
             .headerContainer{
                 padding-bottom: 7vh !important;
             }
-
-            textarea{
-                height: 100px;
-            }
         }
 
         #thirdSlide{
@@ -245,6 +241,14 @@ page-config-panier {
             background-repeat: no-repeat; /* Do not repeat the image */
             background-size: cover; /* Resize the background image to cover the entire container */
         }
+    }
+
+    .datetime-disabled, .item-datetime-disabled ion-label{
+        opacity : 1 !important;
+    }
+
+    textarea{
+        height: 100px;
     }
 
 }

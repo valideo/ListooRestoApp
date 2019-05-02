@@ -21,7 +21,7 @@ export class ProfilPage {
   restoName : string = "";
   restoType : string = "";
   isDisabled : boolean = true;
-  btnText : string = "Modifier les informations"
+  btnText : string = "Modificar"
 
   constructor(public app : App, public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage) {
     this.loadInfos();
@@ -55,16 +55,16 @@ export class ProfilPage {
   editInfos(){
     if(this.isDisabled == true){
       this.isDisabled = false;
-      this.btnText = "Valider les informations";
+      this.btnText = "Guardar los cambios";
     }else{
       this.apiProvider.apiUpdateMe(this.email, this.sName, this.fName, this.address, this.city, this.zip, this.tel, this.restoName, this.restoType).then(data=>{
         this.isDisabled = true;
-        this.btnText = "Modifier les informations";
+        this.btnText = "Modificar";
         this.navCtrl.setRoot(ProfilPage);
       }, err =>{
         this.isDisabled = true;
-        this.btnText = "Modifier les informations";
-        this.apiProvider.presentToast("Impossible de mettre à jour les informations.")
+        this.btnText = "Modificar";
+        this.apiProvider.presentAlertOK("Impossible de mettre à jour les informations.");
       });
     }
   }

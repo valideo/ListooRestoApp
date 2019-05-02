@@ -20,7 +20,9 @@ page-panier {
         position: absolute;
         width: 85%;
 
-
+            button > span{
+                font-size : 1.3rem !important;
+            }
         
             h5, h1{
                 color: white;

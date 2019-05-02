@@ -84,7 +84,7 @@ export class ConfigPanierPage {
     if(this.endHour > this.startHour){
       this.publishAnnonce();
     }else{
-      this.apiProvider.presentToast("L'heure de fin de récupération est antérieur à celle de début de récupération !");
+      this.apiProvider.presentAlertOK("L'heure de fin de récupération est antérieur à celle de début de récupération !");
     }
   }
 

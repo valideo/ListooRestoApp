@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="shadowed">
   <ion-icon (click)="goBack()" *ngIf="type == 'detail'" name="ios-arrow-round-back"></ion-icon>
   <header-small *ngIf="type == 'detail'"></header-small>
 </ion-header>
@@ -117,13 +117,13 @@
     </ion-item>
     <h5>Horario de recogida:</h5>
     <ion-item>
-      <ion-label>De</ion-label>
+      <ion-label>De :</ion-label>
       <ion-datetime disabled="true" (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="HH:mm" [(ngModel)]="startHour"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Hasta</ion-label>
+      <ion-label>Hasta :</ion-label>
       <ion-datetime disabled="true" (ionChange)="dateEndChanged()" minuteValues="0,30" min="{{minEnd}}" displayFormat="HH:mm" [(ngModel)]="endHour"></ion-datetime>
     </ion-item>
-    <button ion-button (click)="editPanier()">Modifier</button>
+    <button ion-button (click)="editPanier()">Modificar</button>
     
     </ion-content>

@@ -39,12 +39,16 @@ export class MyApp {
           console.log(data);
           if(data.wasTapped){
             console.log("Received in background");
+            this.evenemt.publish('goOrders');
           } else {
             console.log("Received in foreground");
+            this.apiProvider.presentAlertNotif('¡Nuevo pedido!', "Se ha hecho un nuevo pedido, véalo aquí y prepare el paquete.");
           };
         });
       }
-      statusBar.backgroundColorByHexString('#ffffff');
+      statusBar.styleDefault();
+      statusBar.backgroundColorByHexString("#D6D6D6");
+      console.log(statusBar);
     });
   }
 }

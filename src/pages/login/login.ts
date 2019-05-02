@@ -1,3 +1,4 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { PwforgotPage } from './../pwforgot/pwforgot';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { TabsPage } from './../tabs/tabs';
@@ -14,16 +15,27 @@ export class LoginPage {
 
   email : string = "";
   password : string = "";
+  shouldHeight = "100%" ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage, private keyboard : Keyboard) {
+    keyboard.onKeyboardShow()
+    .subscribe(data => {
+       this.shouldHeight = "-600%";
+    });
+    keyboard.onKeyboardHide()
+    .subscribe(data => {
+       this.shouldHeight = "100%";
+    });
   }
+
+
 
   clickLogin(){
     if(this.email != "" && this.password != ""){
       this.login();
     }
     else{
-      this.apiProvider.presentToast("Veuillez remplir les champs pour vous connecter");
+      this.apiProvider.presentAlertConnexion("Algunos campos son incorrectos.");
     }
   }
 

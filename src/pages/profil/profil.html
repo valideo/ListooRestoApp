@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="shadowed">
 
     <header-small></header-small>
   
@@ -65,16 +65,16 @@
           </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label stacked>Adresse :</ion-label>
+            <ion-label stacked>Dirección del establecimiento :</ion-label>
             <ion-input disabled="{{isDisabled}}" [(ngModel)]="address" placeholder="Cra 7 # 91 - 72" type="text"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label stacked>Ville :</ion-label>
+            <ion-label stacked>Ciudad :</ion-label>
             <ion-input disabled="{{isDisabled}}" [(ngModel)]="city" placeholder="Bogota" type="text"></ion-input>
         </ion-item>
         </ion-list>
   
     <button ion-button full (click)="editInfos()">{{btnText}}</button>
-    <button ion-button full *ngIf="isDisabled" (click)="disconnect()">Se déconnecter</button>
+    <button ion-button full *ngIf="isDisabled" (click)="disconnect()">Desconectarse</button>
 
 </ion-content>

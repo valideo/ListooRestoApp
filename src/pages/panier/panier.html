@@ -1,12 +1,10 @@
-<ion-header>
+<ion-header class="shadowed">
 
   <header-small></header-small>
 
 </ion-header>
 
 <ion-content padding>
-  <h1>Estado del paquete del día :</h1>
-
     <ion-card>
       <div class="imgWrap">
         <img src="{{imgUrl}}"/>
@@ -14,22 +12,22 @@
       <div class="picText">
         <h1>Su paquete del día</h1>
         <h5>{{dateFormated}}</h5>
-        <button ion-button class="buttonInvert" (click)="changePicture()" >Cambiar la foto del paquete</button>
+        <button *ngIf="hasAnnonce"  ion-button class="buttonInvert" (click)="changePicture()" >Cambiar la foto del paquete</button>
       </div>
       <ion-item *ngIf="isPublished" style="padding-bottom: 0px !important">
       <div (click)="goOrders()" class="contain border" start>
         <div><ion-icon name="ios-basket-outline"></ion-icon></div>
-        <h5>{{nbReserved}} paquetes reservadas</h5>
+        <h5>{{nbReserved}} paquetes reservados</h5>
       </div>
       <div class="contain" end>
         <div><ion-icon name="ios-basket-outline"></ion-icon></div>
         <h5>{{nbRestants}} paquetes restantes</h5>
       </div>
       </ion-item>
-      <ion-item style="padding-top : 0px !important; padding-bottom: 0px !important" *ngIf="isPublished"><button ion-button (click)="disableAnnonce()">Dépublier</button></ion-item>
+      <ion-item style="padding-top : 0px !important; padding-bottom: 0px !important" *ngIf="isPublished"><button ion-button (click)="disableAnnonce()">retirar el paquete</button></ion-item>
       <ion-item *ngIf="!isPublished">
-        <p>Votre panier n'est pas encore publié !</p>
-        <button *ngIf="hasAnnonce"  ion-button (click)="activeAnnonce()">Publier</button>
+        <p>El paquete del día no ha sido publicado ! </p>
+        <button *ngIf="hasAnnonce"  ion-button (click)="activeAnnonce()">publicar el paquete</button>
       </ion-item>
       </ion-card>
       <button id="btnDetail" *ngIf="hasAnnonce" ion-button full (click)="goDetail()">Ver el detalle del paquete</button>
