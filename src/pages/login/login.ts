@@ -13,8 +13,8 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  email : string = "";
-  password : string = "";
+  email : string = "valentin@valideoc.com";
+  password : string = "test1234";
   shouldHeight = "100%" ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public nativeStorage : NativeStorage, private keyboard : Keyboard) {

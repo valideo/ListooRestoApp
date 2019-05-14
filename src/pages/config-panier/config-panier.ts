@@ -13,7 +13,7 @@ export class ConfigPanierPage {
 
   prix : number = 10000;
   qtite : number = 1;
-  totalGain : number = this.prix*0.3*this.qtite;
+  totalGain : string = (this.prix*0.3*this.qtite).toLocaleString('es-CO');
   desc : string = "";
   startHour : String = "09:00:00";
   isDisabled : boolean = true;
@@ -30,14 +30,14 @@ export class ConfigPanierPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController, private keyboard : Keyboard, private alertCtrl : AlertController) {
     events.subscribe('valuePanier', () => {
-      this.totalGain = this.prix*0.3*this.qtite;
+      this.totalGain = (this.prix*0.3*this.qtite).toLocaleString('es-CO');
     });
     this.type = this.navParams.get("type");
     if(this.type != "first")
       this.loadData();
     this.startHourDate.setHours(9);
       const alert = this.alertCtrl.create({
-        message: "Gracias a usted tenemos la oportunidad de luchar contra el desperdicio de alimentos y la pobreza.",
+        message: "Nuestra política es aplicar el 70% de descuento sobre el precio actual, así que por favor indica el precio actual del producto que deseas vender y nosotros haremos el descuento automáticamente.",
         buttons: ['Ok']
       });
     
@@ -55,7 +55,29 @@ export class ConfigPanierPage {
        this.isClavierOpen = false;
     });
 
-    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
+    this.creneau = this.setCreneau(this.startHour, this.endHour);
+  }
+
+  setCreneau(startHour, endHour){
+
+    var intstart = parseInt(startHour.toString().substring(0,2));
+    var intend = parseInt(endHour.toString().substring(0,2));
+    var startString = "";
+    var endString = "";
+
+    if(intstart > 12)
+      startString = (intstart-12).toString() + startHour.toString().substring(2,5)+"pm";
+    else
+      startString = intstart.toString() + startHour.toString().substring(2,5)+"am";
+
+    if(intend > 12)
+      endString = (intend-12).toString() + endHour.toString().substring(2,5)+"pm";
+    else
+      endHour = intend.toString() + endHour.toString().substring(2,5)+"am";
+
+    var finalString = startString + " - " + endString
+    return finalString;
+
   }
 
   slideTo(nb : number){
@@ -75,7 +97,7 @@ export class ConfigPanierPage {
       this.endHourDate.setHours(parseInt(this.endHour.toString().substring(0,2))); 
       this.endHourDate.setMinutes(parseInt(this.endHour.toString().substring(3,5)));
       this.valueChanged();
-      this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
+      this.creneau = this.setCreneau(this.startHour, this.endHour);
     }, err => {
 
     });
@@ -110,7 +132,7 @@ export class ConfigPanierPage {
     this.startHourDate.setHours(hourSelected);
     this.startHourDate.setMinutes(minutesSelected);
     this.isDisabled = false;
-    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
+    this.creneau = this.setCreneau(this.startHour, this.endHour);
   }
   
 
@@ -129,7 +151,7 @@ export class ConfigPanierPage {
     var minutesSelected : number = parseInt(this.endHour.toString().substring(3,5));
     this.endHourDate.setHours(hourSelected);
     this.endHourDate.setMinutes(minutesSelected);
-    this.creneau = this.startHour.toString().substring(0,5) + " - " + this.endHour.toString().substring(0,5);
+    this.creneau = this.setCreneau(this.startHour, this.endHour);
   }
 
   publishAnnonce(){

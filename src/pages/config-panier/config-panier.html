@@ -12,7 +12,7 @@
         </button>
       </ion-buttons>   
     <header-big></header-big>
-        <p>Nuestra política es aplicar el 70% de descuento sobre el precio actual, así que por favor indica el precio actual del producto que deseas vender y nosotros haremos el descuento automáticamente 👍</p>
+        <p>Gracias a usted tenemos la oportunidad de luchar contra el desperdicio de alimentos y la pobreza. 👍</p>
         <h5>¿Cuantos paquetes deseas vender?  :</h5>
         <ion-item>
           <ion-input (ionChange)="valueChanged()" [(ngModel)]="qtite" type="number"></ion-input>
@@ -21,11 +21,11 @@
         <ion-item>
           <ion-select (ionChange)="valueChanged()" [(ngModel)]="prix" multiple="false" cancelText="Annuler"
             okText="Valider">
-            <ion-option  value="10000">$ 10 000/paquete</ion-option>
-            <ion-option  value="15000">$ 15 000/paquete</ion-option>
-            <ion-option  value="22000">$ 22 000/paquete</ion-option>
-            <ion-option  value="30000">$ 30 000/paquete</ion-option>
-            <ion-option  value="40000">$ 40 000/paquete</ion-option>
+            <ion-option  value="10000">$ 10.000/paquete</ion-option>
+            <ion-option  value="15000">$ 15.000/paquete</ion-option>
+            <ion-option  value="22000">$ 22.000/paquete</ion-option>
+            <ion-option  value="30000">$ 30.000/paquete</ion-option>
+            <ion-option  value="40000">$ 40.000/paquete</ion-option>
           </ion-select>
         </ion-item>
         <div id="resQtite">
@@ -51,11 +51,11 @@
         <h5>Horario de recogida:</h5>
         <ion-item>
           <ion-label>De</ion-label>
-          <ion-datetime (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="HH:mm" min="{{minStart}}" [(ngModel)]="startHour"></ion-datetime>
+          <ion-datetime (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="hh:mm:a" [(ngModel)]="startHour"></ion-datetime>
         </ion-item>
         <ion-item>
           <ion-label>Hasta :</ion-label>
-          <ion-datetime disabled="{{isDisabled}}" (ionChange)="dateEndChanged()" minuteValues="0,30" min="{{minEnd}}" displayFormat="HH:mm" [(ngModel)]="endHour"></ion-datetime>
+          <ion-datetime disabled="{{isDisabled}}" (ionChange)="dateEndChanged()" minuteValues="0,30" displayFormat="hh:mm:a" [(ngModel)]="endHour"></ion-datetime>
         </ion-item>
       <button *ngIf="!isClavierOpen"  class="next" ion-button (click)="slideTo('2')">Siguiente</button>
     </ion-slide>
@@ -72,11 +72,11 @@
         <ion-item>
           <ion-select (ionChange)="valueChanged()" disabled="true" [(ngModel)]="prix" multiple="false" cancelText="Annuler"
             okText="Valider">
-            <ion-option  value="10000">$ 10 000</ion-option>
-            <ion-option  value="15000">$ 15 000</ion-option>
-            <ion-option  value="22000">$ 22 000</ion-option>
-            <ion-option  value="30000">$ 30 000</ion-option>
-            <ion-option  value="40000">$ 40 000</ion-option>
+            <ion-option  value="10000">$ 10.000</ion-option>
+            <ion-option  value="15000">$ 15.000</ion-option>
+            <ion-option  value="22000">$ 22.000</ion-option>
+            <ion-option  value="30000">$ 30.000</ion-option>
+            <ion-option  value="40000">$ 40.000</ion-option>
           </ion-select>
         </ion-item>
             <h3>Ganancia de :</h3>
@@ -104,11 +104,11 @@
         <ion-item>
           <ion-select disabled="true" (ionChange)="valueChanged()" [(ngModel)]="prix" multiple="false" cancelText="Annuler"
             okText="Valider">
-            <ion-option  value="10000">$ 10 000/paquete</ion-option>
-            <ion-option  value="15000">$ 15 000/paquete</ion-option>
-            <ion-option  value="22000">$ 22 000/paquete</ion-option>
-            <ion-option  value="30000">$ 30 000/paquete</ion-option>
-            <ion-option  value="40000">$ 40 000/paquete</ion-option>
+            <ion-option  value="10000">$ 10.000</ion-option>
+            <ion-option  value="15000">$ 15.000</ion-option>
+            <ion-option  value="22000">$ 22.000</ion-option>
+            <ion-option  value="30000">$ 30.000</ion-option>
+            <ion-option  value="40000">$ 40.000</ion-option>
           </ion-select>
         </ion-item>
     <h5>Salvo de ir a la basura :</h5>
@@ -118,11 +118,11 @@
     <h5>Horario de recogida:</h5>
     <ion-item>
       <ion-label>De :</ion-label>
-      <ion-datetime disabled="true" (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="HH:mm" [(ngModel)]="startHour"></ion-datetime>
+      <ion-datetime disabled="true" (ionChange)="dateStartChanged()" minuteValues="0,30" displayFormat="hh:mm:a" [(ngModel)]="startHour"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Hasta :</ion-label>
-      <ion-datetime disabled="true" (ionChange)="dateEndChanged()" minuteValues="0,30" min="{{minEnd}}" displayFormat="HH:mm" [(ngModel)]="endHour"></ion-datetime>
+      <ion-datetime disabled="true" (ionChange)="dateEndChanged()" minuteValues="0,30" min="{{minEnd}}" displayFormat="hh:mm:a" [(ngModel)]="endHour"></ion-datetime>
     </ion-item>
     <button ion-button (click)="editPanier()">Modificar</button>
     

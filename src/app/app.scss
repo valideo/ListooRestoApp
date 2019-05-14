@@ -202,6 +202,10 @@ ion-tabs .tab-button[aria-selected=true] .tab-button-icon{
   transform: none !important;
 }
 
+.picker-opts{
+  max-width: 60px !important;
+}
+
 .select-icon{
   width: 2rem !important;
   height: 2rem !important;
