@@ -21,6 +21,7 @@
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
     "@ionic-native/core": "4.3.2",
+    "@ionic-native/facebook": "^5.5.1",
     "@ionic-native/fcm": "^4.20.0",
     "@ionic-native/file-transfer": "^4.20.0",
     "@ionic-native/firebase": "^4.20.0",

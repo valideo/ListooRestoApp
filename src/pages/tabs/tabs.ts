@@ -17,7 +17,7 @@ export class TabsPage {
   tab3Root = ProfilPage;
   isBlured : string = "no";
   tabBadgePanier : number = null;
-  tabBadgeOrders : number = 0;
+  tabBadgeOrders : number = null;
   orders : any = [];
 
 

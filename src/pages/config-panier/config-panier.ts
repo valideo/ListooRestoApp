@@ -2,7 +2,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides, Events, ModalController, ViewController} from 'ionic-angular';
+import { NavController, NavParams, Slides, Events, ModalController, ViewController, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-config-panier',
@@ -28,7 +28,7 @@ export class ConfigPanierPage {
   type : string = "";
   isClavierOpen : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController, private keyboard : Keyboard) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events, public apiProvider : ApiProvider, public modalCtrl : ModalController, public viewCtrl : ViewController, private keyboard : Keyboard, private alertCtrl : AlertController) {
     events.subscribe('valuePanier', () => {
       this.totalGain = this.prix*0.3*this.qtite;
     });
@@ -36,6 +36,12 @@ export class ConfigPanierPage {
     if(this.type != "first")
       this.loadData();
     this.startHourDate.setHours(9);
+      const alert = this.alertCtrl.create({
+        message: "Gracias a usted tenemos la oportunidad de luchar contra el desperdicio de alimentos y la pobreza.",
+        buttons: ['Ok']
+      });
+    
+      alert.present();
     this.endHourDate.setHours(23);
     this.minStart = this.todayDate.toLocaleTimeString();
     keyboard.onKeyboardShow()

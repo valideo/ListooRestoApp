@@ -1,4 +1,4 @@
-import { LoginPage } from './../../../../listooUserApp/src/pages/login/login';
+import { LoginPage } from './../login/login';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
