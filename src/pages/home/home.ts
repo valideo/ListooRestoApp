@@ -47,6 +47,10 @@ export class HomePage {
     });
   }
 
+  ionViewDidLoad(){
+    this.apiProvider.hideTabs();
+   }
+   
   quitHome(){
     this.navCtrl.setRoot(TabsPage);
   }
