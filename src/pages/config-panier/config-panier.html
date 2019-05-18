@@ -45,8 +45,9 @@
         </ion-buttons>   
       <header-big></header-big>
         <h5>Descripción del paquete :</h5>
+        <p id="maxChar">(Máximo 250 caracteres)</p>
         <ion-item>
-          <ion-textarea [(ngModel)]="desc"></ion-textarea>
+          <ion-textarea maxlength="250" [(ngModel)]="desc"></ion-textarea>
         </ion-item>
         <h5>Horario de recogida:</h5>
         <ion-item>

@@ -5,7 +5,7 @@ import { ToastController, Events, AlertController } from 'ionic-angular';
 @Injectable()
 export class ApiProvider {
 
-  apiBaseUrl = "http://5.51.150.55:8080/api/";
+  apiBaseUrl = "http://api.listoo.co/api/";
   token : string = "";
   isBlured : string = "blured";
 
