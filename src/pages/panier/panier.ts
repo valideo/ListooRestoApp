@@ -1,3 +1,4 @@
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ConfigPanierPage } from './../config-panier/config-panier';
 import { StartConfigPage } from './../start-config/start-config';
@@ -21,7 +22,8 @@ export class PanierPage {
   nbRestants : number = 0;
   hasAnnonce : boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public modalCtrl : ModalController, public events : Events, public imagePicker : ImagePicker, private transfer: FileTransfer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider : ApiProvider, public modalCtrl : ModalController, public events : Events, public imagePicker : ImagePicker, private transfer: FileTransfer, private splash : SplashScreen) {
+    splash.hide();
     var currentMonth = (this.todayDate.getMonth() + 1);
     var currentMonthString;
     if(currentMonth < 10)

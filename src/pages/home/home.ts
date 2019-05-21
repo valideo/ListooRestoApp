@@ -23,6 +23,7 @@ export class HomePage {
           console.log(data);
           this.apiProvider.apiLogin(data['email'], data['pass']).then(data => {
             if(data['token'] != ""){
+              this.splash.hide();
               this.apiProvider.token = data['token'];
               this.navCtrl.setRoot(TabsPage);
               this.isLoggedIn = true;

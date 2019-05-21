@@ -14,6 +14,7 @@ import { LoginPage } from './../pages/login/login';
 import { ConfigPanierPage } from './../pages/config-panier/config-panier';
 import { StartConfigPage } from './../pages/start-config/start-config';
 import { PwforgotPage } from '../pages/pwforgot/pwforgot';
+import { ListooInfosPage } from './../pages/listoo-infos/listoo-infos';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +26,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { FCM } from '@ionic-native/fcm';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Keyboard } from '@ionic-native/keyboard';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     LoginPage,
     ConfigPanierPage,
     StartConfigPage,
-    PwforgotPage
+    PwforgotPage,
+    ListooInfosPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     LoginPage,
     ConfigPanierPage,
     StartConfigPage,
-    PwforgotPage
+    PwforgotPage,
+    ListooInfosPage
   ],
   providers: [
     StatusBar,
@@ -71,6 +75,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     FCM,
     LocalNotifications,
     Keyboard,
+    InAppBrowser
   ]
 })
 export class AppModule {}
