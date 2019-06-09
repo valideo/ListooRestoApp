@@ -17,7 +17,7 @@ export class PanierPage {
   todayDate : Date = new Date(Date.parse(Date()));
   dateFormated : string = "";
   isPublished : boolean = false;
-  imgUrl : string = "http://5.51.150.55:8080/uploads/defaultPic.jpg";
+  imgUrl : string = "http://api.listoo.co/uploads/defaultPic.jpg";
   nbReserved : number = 0;
   nbRestants : number = 0;
   hasAnnonce : boolean = true;
@@ -41,9 +41,9 @@ export class PanierPage {
         this.isPublished = true; 
       if(data["piUrl"] != ""){
         var picName = data["piUrl"].substring(1, data["piUrl"].length-1);
-        this.imgUrl = "http://5.51.150.55:8080/uploads/"+ picName;
+        this.imgUrl = "http://api.listoo.co/uploads/"+ picName;
       }
-      if(this.checkDate(data["startHour"]) == false){
+      if(this.newCheckDate(data["startHour"]) == false){
         console.log("panier à mettre à jour");
         this.showStartConfig("edit");
       }else{
@@ -124,7 +124,7 @@ export class PanierPage {
         mimeType: 'multipart/form-data',
         params : {file : results[i]}
      }
-     fileTransfer.upload(results[i], 'http://5.51.150.55:8080/apiImg/upload', options)
+     fileTransfer.upload(results[i], 'http://api.listoo.co/apiImg/upload', options)
       .then((data) => {
         this.apiProvider.apiUpdateImg(data["response"]).then(data=>{
           this.navCtrl.setRoot(TabsPage);
@@ -144,8 +144,8 @@ export class PanierPage {
     var datePanier = new Date(datePanierString);
     console.log("Panier : " + datePanier.toLocaleString());
     var todayDate : Date = new Date();
-    todayDate.setHours(5);
-    todayDate.setMinutes(0);
+    todayDate.setHours(0);
+    todayDate.setMinutes(1);
     console.log("Date de comparaison : " + todayDate.toLocaleString());
     if(datePanier.toLocaleString() > todayDate.toLocaleString()){
       console.log("Date panier > Date Now");
@@ -163,6 +163,26 @@ export class PanierPage {
         console.log("Date panier < Date Now && Date Now > 5h");
         return false;
       }
+    }
+  }
+
+  newCheckDate(datePanierString : string){
+
+    var datePanier = new Date(datePanierString);
+
+    datePanier.setHours(23);
+    datePanier.setMinutes(59);
+
+    var todayDate = new Date();
+
+    console.log(datePanier);
+    console.log(todayDate);
+
+    if(todayDate > datePanier){
+      return false
+    }
+    else{
+      return true
     }
   }
 

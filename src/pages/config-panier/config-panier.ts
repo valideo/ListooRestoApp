@@ -36,6 +36,8 @@ export class ConfigPanierPage {
     if(this.type != "first")
       this.loadData();
     this.startHourDate.setHours(9);
+
+    if(this.type != "detail"){
       const alert = this.alertCtrl.create({
         message: "Nuestra política es aplicar el 70% de descuento sobre el precio actual, así que por favor indica el precio actual del producto que deseas vender y nosotros haremos el descuento automáticamente.",
         buttons: ['Ok']
@@ -54,6 +56,8 @@ export class ConfigPanierPage {
        console.log('keyboard is shown');
        this.isClavierOpen = false;
     });
+    }
+      
 
     this.creneau = this.setCreneau(this.startHour, this.endHour);
   }
@@ -112,7 +116,7 @@ export class ConfigPanierPage {
     if(this.endHour > this.startHour){
       this.publishAnnonce();
     }else{
-      this.apiProvider.presentAlertOK("L'heure de fin de récupération est antérieur à celle de début de récupération !");
+      this.apiProvider.presentAlertOK("La hora final de recogida es anterior a la hora inicial de recogida.");
     }
   }
 

@@ -97,6 +97,7 @@ export class ApiProvider {
         if(err.status == 400){
           this.presentAlertConnexion('Algunos campos son incorrectos.');
       }else if(err.status == 403 || err.status == 404){
+          console.log(err.status);
            this.presentAlertConnexion('Email o contrasena incorrecta');
       }else{
         this.presentAlertConnexion('Ha acontecido un error en el servidor');
@@ -131,12 +132,14 @@ export class ApiProvider {
     return new Promise((resolve) => {
       this.http.post(this.apiBaseUrl+"users/registerResto/", postData, options).subscribe(data => {
         resolve(data);
-        this.presentAlertOK("Si cuenta ha sido creada.");
+        this.presentAlertOK("Su cuenta ha sido creada.");
       }, err => {
         if(err.status == 400){
           this.presentAlertConnexion('Algunos campos son incorrectos.');
       }else if(err.status == 403 || err.status == 404){
           this.presentAlertConnexion('Algunos campos son incorrectos.');
+      }else if(err.status == 409){
+          this.presentAlertConnexion('Una cuenta con este email ya ha sido creada.');
       }else{
           this.presentAlertConnexion('Ha acontecido un error en el servidor');
       }

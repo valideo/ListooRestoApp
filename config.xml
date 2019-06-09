@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.listoResto" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Listoo resto</name>
+<widget id="io.listoResto" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Listoo Restaurante</name>
     <description>Listoo app for restaurants</description>
     <author email="valentin@valideoc.com" href="https://www.valideoc.com/">ValideoC</author>
     <content src="index.html" />
@@ -97,7 +97,6 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <engine name="windows" spec="6.0.1" />
-    <engine name="ios" spec="4.5.5" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
 </widget>
